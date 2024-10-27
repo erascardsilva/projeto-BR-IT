@@ -117,3 +117,20 @@ CREATE TABLE Posts (
 ### Procedures encontrar e analisar na pasta sql 
 
 
+### Front  
+
+<img width = "1000px" src="https://github.com/user-attachments/assets/a6775e88-06e8-47e3-9fe9-12bee8792bde">
+
+--------
+
+<img width = "1000px" src="https://github.com/user-attachments/assets/9f8d9015-8c76-44ab-8000-d510c03313b1">
+
+-------
+
+<img width = "1000px" src="https://github.com/user-attachments/assets/66f8cab3-4563-4ab2-a8e0-0002c874a6b1">
+
+----------------
+
+<img width = "1000px" src="https://github.com/user-attachments/assets/0e3e9a30-26d9-4cd8-801a-b74a3f32010b">
+
+
