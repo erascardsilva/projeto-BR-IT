@@ -1,0 +1,62 @@
+###  Erasmo Cardoso
+
+
+version: "3.8"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest  
+    container_name: sqlserver-db
+    environment:
+      - SA_PASSWORD=3727BRIT@
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+      - ./sql/sql-scripts:/var/opt/mssql/scripts  
+    networks:
+      - br-it-network
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 3727BRIT@ -Q 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: always  
+
+  backend:
+    build:
+      context: ./AcessoAPI
+      dockerfile: Dockerfile
+    container_name: AcessoAPI
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-db;Database=NEWDESENV;User Id=SA;Password=3727BRIT@;Encrypt=True;TrustServerCertificate=True;
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - sqlserver
+    networks:
+      - br-it-network
+    entrypoint: ["dotnet", "AcessoAPI.dll"]
+
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8080:80"  
+    networks:
+      - br-it-network
+    restart: always  # reinício
+
+networks:
+  br-it-network:
+    driver: bridge
+
+volumes:
+  mssql-data:
+    driver: local

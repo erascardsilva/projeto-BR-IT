@@ -1,0 +1,165 @@
+
+## API REST
+
+#  Clientes
+
+
+### Testar a adição de um novo cliente  OK
+POST http://localhost:5000/api/clientes
+Content-Type: application/json
+
+{
+    "nome": "João da Silva",
+    "email": "joao.silva@example.com",
+    "telefone": "11949224355"
+}
+
+###
+
+### Testar a recuperação de todos os clientes  OK
+GET http://localhost:5000/api/clientes
+Accept: application/json
+
+###
+
+### Testar a recuperação de um cliente específico pelo ID  ok
+GET http://localhost:5000/api/clientes/2
+Accept: application/json
+
+###
+
+### Testar a atualização de um cliente existente    OK
+PUT http://localhost:5000/api/clientes/2
+Content-Type: application/json
+
+{
+    "nome": "João da Silva Atuali",
+    "email": "joao.silva.atualizado@example.com",
+    "telefone": "11949224355"
+}
+
+###
+
+### Testar a exclusão de um cliente   OK
+DELETE http://localhost:5000/api/clientes/2
+Accept: application/json
+
+
+################################################################
+
+
+### Criar um Fornecedor  OK
+POST http://localhost:5000/api/fornecedores
+Content-Type: application/json
+
+{
+  "Nome": "Fornecedor Teste",
+  "Contato": "Contato do Fornecedor",
+  "Telefone": "12345678"
+}
+
+###
+
+### Obter Todos os Fornecedores  OK
+GET http://localhost:5000/api/fornecedores
+Accept: application/json
+
+
+
+### Atualizar um Fornecedor Existente  OK
+PUT http://localhost:5000/api/fornecedores/3
+Content-Type: application/json
+
+{
+    "FornecedorID": 3,
+    "Nome": "Fornecedor Atualizado",
+    "Contato": "Contato Atualizado",
+    "Telefone": "8765-4321"
+}
+
+###
+
+### Deletar um Fornecedor  OK
+DELETE http://localhost:5000/api/fornecedores/2
+
+###
+
+
+########################################################
+
+### Adicionar um novo produto  OK
+POST http://localhost:5000/api/produtos
+Content-Type: application/json
+
+{
+    "nome": "Produto Exemplo",
+    "preco": 19.99,
+    "fornecedorID": 3
+}
+
+### Obter todos os produtos  OK
+GET http://localhost:5000/api/produtos
+Accept: application/json
+
+###
+
+### Obter um produto por ID  OK
+GET http://localhost:5000/api/produtos/3
+Accept: application/json
+
+
+### Atualizar um produto OK
+
+PUT http://localhost:5000/api/produtos/3
+Content-Type: application/json
+
+{
+    "ProdutoID": 3,
+    "nome": "Produto Atualizado",
+    "preco": 29.99,
+    "FornecedorID": 3
+}
+
+###
+
+### Deletar um produto pelo ID  OK  
+DELETE http://localhost:5000/api/produtos/3
+Accept: application/json
+
+###
+
+
+##########################################
+
+#  API JSON EXTERNA 
+
+### Endpoint para verificar os dados armazenados  OK
+GET http://localhost:5000/api/dadosapi
+Content-Type: application/json
+
+#
+----
+
+### Importar Posts da API Externa
+POST http://localhost:5000/api/posts/importar
+Content-Type: application/json
+
+
+
+################################################
+
+## NOTAS
+POST http://localhost:5000/api/notafiscal
+Content-Type: application/json
+
+{
+    "notaFiscal": {
+        "Numero": "123456",
+        "Data": "2024-10-27",
+        "Valor": 100.00,
+        "Descricao": "Venda de produtos",
+        "ClienteID": 4
+    }
+}
+
+
