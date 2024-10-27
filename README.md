@@ -34,6 +34,7 @@ Como Executar
 Usando Docker Compose
 Clone este repositório:
 
+```plaintext
 bash
 Copiar código
 git clone git@github.com:erascardsilva/projeto-BR-IT.git
@@ -42,7 +43,10 @@ Execute o Docker Compose:
 
 bash
 Copiar código
-docker-compose up -d
+
+docker-compose up ---build 
+
+```
 Esse comando inicializará:
 
 O backend em C# que fornece a API REST.
