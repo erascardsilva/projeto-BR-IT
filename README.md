@@ -36,7 +36,7 @@ Clone este repositório:
 
 bash
 Copiar código
-git clone <URL_DO_REPOSITORIO>
+git clone git@github.com:erascardsilva/projeto-BR-IT.git
 cd projeto-BR-IT
 Execute o Docker Compose:
 
@@ -60,16 +60,56 @@ cd AcessoAPI
 dotnet run
 Inicie o Nginx ou configure outro servidor para servir o frontend.
 Endpoints da API
-Clientes
 
-POST /clientes - Insere um cliente.
-GET /clientes - Retorna todos os clientes.
-GET /clientes/{id} - Retorna um cliente por ID.
-PUT /clientes/{id} - Atualiza um cliente por ID.
-DELETE /clientes/{id} - Deleta um cliente por ID.
-Fornecedores, Produtos, Nota Fiscal e Posts
+http://localhost:8080
 
-Endpoints similares com métodos para CRUD, conforme necessário.
-Observações
-Banco de Dados: Todas as operações no banco são feitas exclusivamente via stored procedures, garantindo maior segurança e organização no acesso aos dados.
-Script Manual: Caso deseje configurar o banco manualmente, os scripts SQL estão na pasta sql/script manual/.
+-------------------------------------------------------------
+
+# Estrutura do Banco de Dados e Stored Procedures
+
+Este documento descreve as tabelas e stored procedures utilizadas no projeto.
+
+---
+
+## Estrutura das Tabelas
+
+###  Tabelas
+
+Guarda informações dos clientes da aplicação.
+
+```sql
+CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Telefone NVARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Produtos (
+    ProdutoID INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100) NOT NULL,
+    Preco DECIMAL(10, 2) NOT NULL,
+    FornecedorID INT,
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedores(FornecedorID)
+);
+
+CREATE TABLE NotaFiscal (
+    NotaFiscalID INT PRIMARY KEY IDENTITY(1,1),
+    ClienteID INT,
+    DataVenda DATETIME NOT NULL,
+    Total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+
+CREATE TABLE Posts (
+    UserId INT NOT NULL,
+    Id INT PRIMARY KEY,
+    Title NVARCHAR(255) NOT NULL,
+    Body NVARCHAR(MAX) NOT NULL
+);
+
+```
+
+### Procedures encontrar e analisar na pasta sql 
+
+
