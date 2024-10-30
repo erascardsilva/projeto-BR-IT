@@ -321,7 +321,7 @@ BEGIN
 END;
 GO
 
--- Exemplo de Stored Procedure para Deletar Produto
+-- Stored Procedure para Deletar Produto
 CREATE PROCEDURE sp_DeletarProduto
     @ProdutoID INT
 AS
@@ -330,7 +330,7 @@ BEGIN
 END;
 GO
 
--- Exemplo de Stored Procedure para Atualizar Produto
+-- Stored Procedure para Atualizar Produto
 CREATE PROCEDURE sp_AtualizarProduto
     @ProdutoID INT,
     @Nome NVARCHAR(100),
