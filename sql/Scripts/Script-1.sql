@@ -1,3 +1,5 @@
+--Erasmo Cardoso
+
 -- Criar banco de dados
 CREATE DATABASE NEWDESENV;
 GO
@@ -179,7 +181,6 @@ GO
 
 -- Stored Procedures para Fornecedores
 
--- Stored Procedure para Inserir Fornecedor
 CREATE PROCEDURE sp_InserirFornecedor
     @Nome NVARCHAR(100),
     @Contato NVARCHAR(100),
@@ -300,8 +301,8 @@ BEGIN
     INSERT INTO Produtos (Nome, Preco, Estoque, FornecedorID)
     VALUES (@Nome, @Preco, @Estoque, @FornecedorID);
 END
-GO
 
+GO
 
 -- Exemplo de Stored Procedure para Buscar Produtos
 CREATE PROCEDURE sp_BuscarProdutos

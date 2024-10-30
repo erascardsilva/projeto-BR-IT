@@ -1,3 +1,4 @@
+-- Configurar banco de dados SQL Server  ----  Erasmo
 -- Criar banco de dados
 CREATE DATABASE NEWDESENV;
 GO
@@ -33,16 +34,6 @@ CREATE TABLE Produtos (
     FOREIGN KEY (FornecedorID) REFERENCES Fornecedores(FornecedorID)
 );
 GO
-
-CREATE TABLE Produtos (
-    ProdutoID INT PRIMARY KEY IDENTITY,
-    Nome NVARCHAR(255) NOT NULL,
-    Preco DECIMAL(18, 2) NOT NULL,
-    Estoque INT NOT NULL,
-    DataCriacao DATETIME NOT NULL DEFAULT GETDATE(),
-    DataAtualizacao DATETIME NOT NULL DEFAULT GETDATE()
-);
-
 
 -- Criar tabela Nota Fiscal
 CREATE TABLE NotaFiscal (
@@ -177,7 +168,6 @@ BEGIN
 END;
 GO
 
--- Stored Procedures para Fornecedores
 
 -- Stored Procedure para Inserir Fornecedor
 CREATE PROCEDURE sp_InserirFornecedor
@@ -231,7 +221,6 @@ BEGIN
 END;
 GO
 
--- Stored Procedures para Nota Fiscal
 
 -- Stored Procedure para Inserir Nota Fiscal
 CREATE PROCEDURE sp_InserirNotaFiscal
@@ -286,25 +275,20 @@ END;
 GO
 
 
--- Stored Procedures para Produtos
+-- Stored Procedure para Inserir Produto
 CREATE PROCEDURE sp_InserirProduto
     @Nome NVARCHAR(100),
-    @Preco DECIMAL(18,2),
-    @Estoque INT,
+    @Preco DECIMAL(10, 2),
     @FornecedorID INT
 AS
 BEGIN
-    SET NOCOUNT ON;
-
-    -- Insere o novo produto
-    INSERT INTO Produtos (Nome, Preco, Estoque, FornecedorID)
-    VALUES (@Nome, @Preco, @Estoque, @FornecedorID);
-END
+    INSERT INTO Produtos (Nome, Preco, FornecedorID)
+    VALUES (@Nome, @Preco, @FornecedorID);
+END;
 GO
 
-
 -- Exemplo de Stored Procedure para Buscar Produtos
-CREATE PROCEDURE sp_BuscarProdutos
+CREATE PROCEDURE sp_ListarProdutos
 AS
 BEGIN
     SELECT * FROM Produtos;
@@ -342,10 +326,3 @@ BEGIN
     WHERE ProdutoID = @ProdutoID;
 END;
 GO
-
-
-CREATE PROCEDURE sp_ListarProdutos
-AS
-BEGIN
-    SELECT * FROM Produtos;
-END;

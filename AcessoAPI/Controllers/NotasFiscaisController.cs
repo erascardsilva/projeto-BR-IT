@@ -1,4 +1,5 @@
-//Codando 
+// Erasmo Cardoso 
+
 using Microsoft.AspNetCore.Mvc;
 using AcessoAPI.Models;
 using AcessoAPI.Repository;
@@ -54,11 +55,7 @@ namespace AcessoAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (notaFiscal.ClienteID <= 0)
-            {
-                return BadRequest("ClienteID deve ser fornecido e deve ser maior que zero.");
-            }
-
+            
             var clienteExistente = await _notaFiscalRepository.VerificaClienteExistenteAsync(notaFiscal.ClienteID);
             if (!clienteExistente)
             {
@@ -67,7 +64,7 @@ namespace AcessoAPI.Controllers
 
             await _notaFiscalRepository.AddNotaFiscalAsync(notaFiscal);
 
-            return CreatedAtAction(nameof(GetNotaFiscal), new { id = notaFiscal.NotaFiscalID }, notaFiscal);
+            return  CreatedAtAction(nameof(GetNotaFiscal), new { id = notaFiscal }, notaFiscal);
         }
 
         [HttpPut("{id}")]
@@ -82,9 +79,8 @@ namespace AcessoAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            notaFiscalAtualizada.NotaFiscalID = id;
-
+            
+            
             if (!await _notaFiscalRepository.NotaFiscalExistsAsync(id))
             {
                 return NotFound($"Nota fiscal com ID {id} não encontrada.");

@@ -149,17 +149,39 @@ Content-Type: application/json
 ################################################
 
 ## NOTAS
+### Criar uma nova Nota Fiscal  OK
 POST http://localhost:5000/api/notafiscal
 Content-Type: application/json
 
 {
-    "notaFiscal": {
-        "Numero": "123456",
-        "Data": "2024-10-27",
-        "Valor": 100.00,
-        "Descricao": "Venda de produtos",
-        "ClienteID": 4
-    }
+    "numero": "NF123456",
+    "dataEmissao": "2024-10-29T00:00:00",
+    "valor": 150.75,
+    "descricao": "Venda de produtos eletrônicos",
+    "clienteID": 5,
+    "dataVenda": "2024-10-29T00:00:00"
+}
+
+### Obter todas as notas fiscais  OK
+GET http://localhost:5000/api/notafiscal
+Accept: application/json
+
+
+### Atualizar uma Nota Fiscal existente  OK
+PUT http://localhost:5000/api/notafiscal/5
+Content-Type: application/json
+
+{
+    "notaFiscalID": 3,
+    "numero": "NF123456atual",
+    "dataEmissao": "2024-10-29T00:00:00",
+    "valor": 350.00,
+    "descricao": "Venda de produtos eletrônicos atualiza",
+    "clienteID": 5,
+    
+    "dataVenda": "2024-10-29T00:00:00"
 }
 
 
+### Deletar uma Nota Fiscal OK
+DELETE http://localhost:5000/api/notafiscal/5

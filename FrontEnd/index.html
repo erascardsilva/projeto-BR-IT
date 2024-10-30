@@ -1,20 +1,22 @@
-<!-- Erasmo Cardoso Front simplificado -->
+
+<!-- Erasmo Cardoso Front html css javascript simplificando -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Gerenciamento de Clientes, Fornecedores e Notas Fiscais</title>
+    <title>Gerenciamento de Clientes, Fornecedores, Produtos e Notas Fiscais</title>
     <style>
         body {
             background-color: #f8f9fa;
             padding: 20px;
+            font-family: Arial, sans-serif;
         }
         h2 {
             color: #343a40;
             margin-bottom: 30px;
+            text-align: center;
         }
         .section {
             margin-top: 30px;
@@ -24,26 +26,30 @@
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-primary {
+        .btn {
             background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-        .form-control {
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
             border-radius: 5px;
+            cursor: pointer;
         }
-        .form-group label {
-            font-weight: bold;
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .form-control, .list-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
         }
         .list-item {
             background-color: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
             margin-top: 10px;
-            transition: background-color 0.3s;
         }
         .list-item:hover {
             background-color: #ced4da;
@@ -51,280 +57,187 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="text-center">Gerenciamento de Clientes, Fornecedores e Notas Fiscais</h2>
+    <h2>Gerenciamento de Clientes, Fornecedores, Produtos e Notas Fiscais</h2>
+    <h3>Erasmo Cardoso</h3>
 
-        <div class="section">
-            <h3>Gerenciamento de Clientes</h3>
-            <form id="clienteForm">
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" id="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" class="form-control" id="telefone" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
-            </form>
-            <h4 class="mt-3">Lista de Clientes</h4>
-            <div id="clientes"></div>
-        </div>
+    <!-- Clientes Section -->
+    <div class="section">
+        <h3>Clientes</h3>
+        <form id="clienteForm">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" class="form-control" id="nomeCliente" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" id="emailCliente" required>
+            </div>
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" class="form-control" id="telefoneCliente" required>
+            </div>
+            <button type="submit" class="btn">Adicionar Cliente</button>
+        </form>
+        <div id="clientes"></div>
+    </div>
 
-        <div class="section">
-            <h3>Gerenciamento de Fornecedores</h3>
-            <form id="fornecedorForm">
-                <div class="form-group">
-                    <label for="nomeFornecedor">Nome:</label>
-                    <input type="text" class="form-control" id="nomeFornecedor" required>
-                </div>
-                <div class="form-group">
-                    <label for="contato">Contato:</label>
-                    <input type="text" class="form-control" id="contato" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefoneFornecedor">Telefone:</label>
-                    <input type="text" class="form-control" id="telefoneFornecedor" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Adicionar Fornecedor</button>
-            </form>
-            <h4 class="mt-3">Lista de Fornecedores</h4>
-            <div id="fornecedores"></div>
-        </div>
+    <!-- Fornecedores Section -->
+    <div class="section">
+        <h3>Fornecedores</h3>
+        <form id="fornecedorForm">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" class="form-control" id="nomeFornecedor" required>
+            </div>
+            <div class="form-group">
+                <label>Contato:</label>
+                <input type="text" class="form-control" id="contatoFornecedor" required>
+            </div>
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" class="form-control" id="telefoneFornecedor" required>
+            </div>
+            <button type="submit" class="btn">Adicionar Fornecedor</button>
+        </form>
+        <div id="fornecedores"></div>
+    </div>
 
-        <div class="section">
-            <h3>Gerenciamento de Produtos</h3>
-            <form id="produtoForm">
-                <div class="form-group">
-                    <label for="nomeProduto">Nome:</label>
-                    <input type="text" class="form-control" id="nomeProduto" required>
-                </div>
-                <div class="form-group">
-                    <label for="preco">Preço:</label>
-                    <input type="number" class="form-control" id="preco" required>
-                </div>
-                <div class="form-group">
-                    <label for="fornecedorIDProduto">Fornecedor ID:</label>
-                    <input type="number" class="form-control" id="fornecedorIDProduto" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Adicionar Produto</button>
-            </form>
-            <h4 class="mt-3">Lista de Produtos</h4>
-            <div id="produtos"></div>
-        </div>
+    <!-- Produtos Section -->
+    <div class="section">
+        <h3>Produtos</h3>
+        <form id="produtoForm">
+            <div class="form-group">
+                <label>Nome do Produto:</label>
+                <input type="text" class="form-control" id="nomeProduto" required>
+            </div>
+            <div class="form-group">
+                <label>Preço:</label>
+                <input type="number" class="form-control" id="precoProduto" required>
+            </div>
+            <div class="form-group">
+                <label>Fornecedor ID:</label>
+                <input type="number" class="form-control" id="fornecedorIDProduto" required>
+            </div>
+            <button type="submit" class="btn">Adicionar Produto</button>
+        </form>
+        <div id="produtos"></div>
+    </div>
 
-        <div class="section">
-            <h3>Gerenciamento de Notas Fiscais</h3>
-            <form id="notaFiscalForm">
-                <div class="form-group">
-                    <label for="numeroNota">Número da Nota:</label>
-                    <input type="text" class="form-control" id="numeroNota" required>
-                </div>
-                <div class="form-group">
-                    <label for="dataEmissao">Data de Emissão:</label>
-                    <input type="date" class="form-control" id="dataEmissao" required>
-                </div>
-                <div class="form-group">
-                    <label for="valorTotal">Valor Total:</label>
-                    <input type="number" class="form-control" id="valorTotal" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Adicionar Nota Fiscal</button>
-            </form>
-            <h4 class="mt-3">Lista de Notas Fiscais</h4>
-            <div id="notasFiscais"></div>
-        </div>
+    <!-- Notas Fiscais Section -->
+    <div class="section">
+        <h3>Notas Fiscais</h3>
+        <form id="notaFiscalForm">
+            <div class="form-group">
+                <label>Número da Nota:</label>
+                <input type="text" class="form-control" id="numeroNota" required>
+            </div>
+            <div class="form-group">
+                <label>Data de Emissão:</label>
+                <input type="date" class="form-control" id="dataEmissao" required>
+            </div>
+            <div class="form-group">
+                <label>Valor Total:</label>
+                <input type="number" class="form-control" id="valorTotal" required>
+            </div>
+            <div class="form-group">
+                <label>Descrição:</label>
+                <input type="text" class="form-control" id="descricaoNota" required>
+            </div>
+            <div class="form-group">
+                <label>ID do Cliente:</label>
+                <input type="number" class="form-control" id="clienteIDNota" required>
+            </div>
+            <div class="form-group">
+                <label>Data da Venda:</label>
+                <input type="date" class="form-control" id="dataVenda" required>
+            </div>
+            <button type="submit" class="btn">Adicionar Nota</button>
+        </form>
+        <div id="notasFiscais"></div>
     </div>
 
     <script>
-        const API_URL_CLIENTES = "http://localhost:5000/api/clientes";
-        const API_URL_FORNECEDORES = "http://localhost:5000/api/fornecedores";
-        const API_URL_PRODUTOS = "http://localhost:5000/api/produtos";
-        const API_URL_NOTAS_FISCAIS = "http://localhost:5000/api/notas-fiscais"; 
+        const API_CLIENTES = "http://localhost:5000/api/clientes";
+        const API_FORNECEDORES = "http://localhost:5000/api/fornecedores";
+        const API_PRODUTOS = "http://localhost:5000/api/produtos";
+        const API_NOTAS = "http://localhost:5000/api/notafiscal";
 
-        async function carregarClientes() {
-            try {
-                const response = await fetch(API_URL_CLIENTES);
-                const clientes = await response.json();
-                const clientesDiv = document.getElementById("clientes");
-
-                clientesDiv.innerHTML = "";
-                clientes.forEach(cliente => {
-                    clientesDiv.innerHTML += `<div class="list-item">${cliente.nome}, Email: ${cliente.email}, Telefone: ${cliente.telefone}</div>`;
-                });
-            } catch (error) {
-                console.error("Erro:", error);
-            }
+        // Função para carregar e exibir dados de uma entidade
+        async function carregarDados(apiUrl, elementoHTML) {
+            const response = await fetch(apiUrl);
+            const dados = await response.json();
+            document.getElementById(elementoHTML).innerHTML = dados.map(
+                item => `<div class="list-item">${Object.values(item).join(' - ')}</div>`
+            ).join("");
         }
 
-        async function carregarFornecedores() {
-            try {
-                const response = await fetch(API_URL_FORNECEDORES);
-                const fornecedores = await response.json();
-                const fornecedoresDiv = document.getElementById("fornecedores");
-
-                fornecedoresDiv.innerHTML = "";
-                fornecedores.forEach(fornecedor => {
-                    fornecedoresDiv.innerHTML += `<div class="list-item">${fornecedor.nome}, Contato: ${fornecedor.contato}, Telefone: ${fornecedor.telefone}</div>`;
-                });
-            } catch (error) {
-                console.error("Erro:", error);
-            }
-        }
-
-        async function carregarProdutos() {
-            try {
-                const response = await fetch(API_URL_PRODUTOS);
-                const produtos = await response.json();
-                const produtosDiv = document.getElementById("produtos");
-
-                produtosDiv.innerHTML = "";
-                produtos.forEach(produto => {
-                    produtosDiv.innerHTML += `<div class="list-item">${produto.nome}, Preço: R$${produto.preco}, Fornecedor ID: ${produto.fornecedorID}</div>`;
-                });
-            } catch (error) {
-                console.error("Erro:", error);
-            }
-        }
-
-        async function carregarNotasFiscais() {
-            try {
-                const response = await fetch(API_URL_NOTAS_FISCAIS);
-                const notasFiscais = await response.json();
-                const notasFiscaisDiv = document.getElementById("notasFiscais");
-
-                notasFiscaisDiv.innerHTML = "";
-                notasFiscais.forEach(nota => {
-                    notasFiscaisDiv.innerHTML += `<div class="list-item">Nota: ${nota.numero}, Data: ${nota.dataEmissao}, Valor: R$${nota.valorTotal}</div>`;
-                });
-            } catch (error) {
-                console.error("Erro:", error);
-            }
-        }
-
-        document.getElementById("clienteForm").addEventListener("submit", async (e) => {
+        // Clientes
+        document.getElementById("clienteForm").addEventListener("submit", async e => {
             e.preventDefault();
-            const nome = document.getElementById("nome").value;
-            const email = document.getElementById("email").value;
-            const telefone = document.getElementById("telefone").value;
-
-            const novoCliente = { nome, email, telefone };
-
-            try {
-                const response = await fetch(API_URL_CLIENTES, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(novoCliente)
-                });
-
-                if (response.ok) {
-                    alert("Cliente adicionado com sucesso!");
-                    document.getElementById("clienteForm").reset();
-                    carregarClientes();
-                } else {
-                    alert("Erro ao adicionar cliente.");
-                }
-            } catch (error) {
-                console.error("Erro:", error);
-            }
+            const nome = document.getElementById("nomeCliente").value;
+            const email = document.getElementById("emailCliente").value;
+            const telefone = document.getElementById("telefoneCliente").value;
+            await fetch(API_CLIENTES, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, email, telefone })
+            });
+            alert("Cliente gravado com sucesso!");
+            carregarDados(API_CLIENTES, "clientes");
         });
 
-        document.getElementById("fornecedorForm").addEventListener("submit", async (e) => {
+        // Fornecedores
+        document.getElementById("fornecedorForm").addEventListener("submit", async e => {
             e.preventDefault();
             const nome = document.getElementById("nomeFornecedor").value;
-            const contato = document.getElementById("contato").value;
-            const telefoneFornecedor = document.getElementById("telefoneFornecedor").value;
-
-            const novoFornecedor = { nome, contato, telefone: telefoneFornecedor };
-
-            try {
-                const response = await fetch(API_URL_FORNECEDORES, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(novoFornecedor)
-                });
-
-                if (response.ok) {
-                    alert("Fornecedor adicionado com sucesso!");
-                    document.getElementById("fornecedorForm").reset();
-                    carregarFornecedores();
-                } else {
-                    alert("Erro ao adicionar fornecedor.");
-                }
-            } catch (error) {
-                console.error("Erro:", error);
-            }
+            const contato = document.getElementById("contatoFornecedor").value;
+            const telefone = document.getElementById("telefoneFornecedor").value;
+            await fetch(API_FORNECEDORES, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, contato, telefone })
+            });
+            alert("Fornecedor gravado com sucesso!");
+            carregarDados(API_FORNECEDORES, "fornecedores");
         });
 
-        document.getElementById("produtoForm").addEventListener("submit", async (e) => {
+        // Produtos
+        document.getElementById("produtoForm").addEventListener("submit", async e => {
             e.preventDefault();
             const nome = document.getElementById("nomeProduto").value;
-            const preco = document.getElementById("preco").value;
+            const preco = document.getElementById("precoProduto").value;
             const fornecedorID = document.getElementById("fornecedorIDProduto").value;
-
-            const novoProduto = { nome, preco, fornecedorID };
-
-            try {
-                const response = await fetch(API_URL_PRODUTOS, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(novoProduto)
-                });
-
-                if (response.ok) {
-                    alert("Produto adicionado com sucesso!");
-                    document.getElementById("produtoForm").reset();
-                    carregarProdutos();
-                } else {
-                    alert("Erro ao adicionar produto.");
-                }
-            } catch (error) {
-                console.error("Erro:", error);
-            }
+            await fetch(API_PRODUTOS, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, preco, fornecedorID })
+            });
+            alert("Produto gravado com sucesso!");
+            carregarDados(API_PRODUTOS, "produtos");
         });
 
-        document.getElementById("notaFiscalForm").addEventListener("submit", async (e) => {
+        // Notas Fiscais
+        document.getElementById("notaFiscalForm").addEventListener("submit", async e => {
             e.preventDefault();
             const numero = document.getElementById("numeroNota").value;
             const dataEmissao = document.getElementById("dataEmissao").value;
-            const valorTotal = document.getElementById("valorTotal").value;
-
-            const novaNotaFiscal = { numero, dataEmissao, valorTotal };
-
-            try {
-                const response = await fetch(API_URL_NOTAS_FISCAIS, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(novaNotaFiscal)
-                });
-
-                if (response.ok) {
-                    alert("Nota fiscal adicionada com sucesso!");
-                    document.getElementById("notaFiscalForm").reset();
-                    carregarNotasFiscais();
-                } else {
-                    alert("Erro ao adicionar nota fiscal.");
-                }
-            } catch (error) {
-                console.error("Erro:", error);
-            }
+            const valor = document.getElementById("valorTotal").value;
+            const descricao = document.getElementById("descricaoNota").value;
+            const clienteID = document.getElementById("clienteIDNota").value;
+            const dataVenda = document.getElementById("dataVenda").value;
+            await fetch(API_NOTAS, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ numero, dataEmissao, valor, descricao, clienteID, dataVenda })
+            });
+            alert("Nota fiscal gravada com sucesso!");
+            carregarDados(API_NOTAS, "notasFiscais");
         });
 
-        carregarClientes();
-        carregarFornecedores();
-        carregarProdutos();
-        carregarNotasFiscais(); 
+        carregarDados(API_CLIENTES, "clientes");
+        carregarDados(API_FORNECEDORES, "fornecedores");
+        carregarDados(API_PRODUTOS, "produtos");
+        carregarDados(API_NOTAS, "notasFiscais");
     </script>
 </body>
 </html>
