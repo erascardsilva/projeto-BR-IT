@@ -8,18 +8,19 @@ Este projeto é uma aplicação de gestão para clientes, fornecedores, produtos
 projeto-BR-IT/
 ├── AcessoAPI/                # Diretório com o backend em C# (.NET 8)
 │   ├── Controllers/          # Contém os controladores da API
-│   ├── Data/                 # Configuração do banco de dados
+│   ├── Data/                 # Conexão com o banco de dados
 │   ├── Repositories/         # Acesso ao banco e uso de stored procedures
 │   ├── AcessoAPI.csproj      # Projeto principal em C#
 │   ├── Program.cs            # Ponto de entrada do backend
 │   └── Dockerfile            # Dockerfile para o backend
-├── FrontEnd/                 # HTML básico servido via Nginx
-├── sql/                      # Scripts SQL para criar e popular o banco
+├── FrontEnd/                 # HTML básico para teste de rotas
+├── sql/                      # Scripts SQL 
 │   ├── Dockerfile            # Dockerfile para o SQL Server
 │   ├── script manual/        # Scripts SQL de configuração manual do banco
-│   └── sql-scripts/          # Scripts SQL principais de criação e população
+│   └── sql-scripts/          # Scripts SQL automatizados
 ├── docker-compose.yml        # Arquivo de configuração do Docker Compose
-└── README.md                 # Documentação do projeto
+├── api.rest                  # Testar as rotas
+└── README.md                 # Documentação 
 ```
 
 Tecnologias Utilizadas
