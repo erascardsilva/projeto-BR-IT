@@ -19,8 +19,7 @@ projeto-BR-IT/
 │   ├── script manual/        # Scripts SQL de configuração manual do banco
 │   └── sql-scripts/          # Scripts SQL automatizados
 ├── docker-compose.yml        # Arquivo de configuração do Docker Compose
-├── api.rest                  # Testar as rotas
-└── README.md                 # Documentação 
+└── README.md                 # Documentação do projeto
 ```
 
 Tecnologias Utilizadas
