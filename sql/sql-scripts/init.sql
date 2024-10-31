@@ -235,15 +235,20 @@ GO
 -- Stored Procedures para Nota Fiscal
 
 -- Stored Procedure para Inserir Nota Fiscal
-CREATE PROCEDURE sp_InserirNotaFiscal
+CREATE PROCEDURE dbo.sp_InserirNotaFiscal
+@Numero NVARCHAR(50),
+    @DataEmissao DATETIME,
+    @Valor DECIMAL(18, 2),
+    @Descricao NVARCHAR(100),
     @ClienteID INT,
-    @DataVenda DATETIME,
-    @Total DECIMAL(10, 2)
+    @NotaFiscalID INT OUTPUT
 AS
 BEGIN
-    INSERT INTO NotaFiscal (ClienteID, DataVenda, Total)
-    VALUES (@ClienteID, @DataVenda, @Total);
-END;
+    INSERT INTO NotaFiscal (Numero, DataEmissao, Valor, Descricao, ClienteID)
+    VALUES (@Numero, @DataEmissao, @Valor, @Descricao, @ClienteID);
+    
+    SET @NotaFiscalID = SCOPE_IDENTITY(); -- Captura o ID gerado
+END
 GO
 
 -- Exemplo de Stored Procedure para Buscar Notas Fiscais
@@ -288,20 +293,18 @@ GO
 
 
 -- Stored Procedures para Produtos
-CREATE PROCEDURE sp_InserirProduto
-    @Nome NVARCHAR(100),
+CREATE PROCEDURE dbo.sp_InserirProduto
+ @Nome NVARCHAR(100),
     @Preco DECIMAL(18,2),
-    @Estoque INT,
     @FornecedorID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     -- Insere o novo produto
-    INSERT INTO Produtos (Nome, Preco, Estoque, FornecedorID)
-    VALUES (@Nome, @Preco, @Estoque, @FornecedorID);
+    INSERT INTO Produtos (Nome, Preco, FornecedorID)
+    VALUES (@Nome, @Preco, @FornecedorID);
 END
-
 GO
 
 -- Exemplo de Stored Procedure para Buscar Produtos
