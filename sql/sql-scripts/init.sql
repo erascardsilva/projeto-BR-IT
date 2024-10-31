@@ -48,11 +48,13 @@ CREATE TABLE Produtos (
 
 -- Criar tabela Nota Fiscal
 CREATE TABLE NotaFiscal (
-    NotaFiscalID INT PRIMARY KEY IDENTITY(1,1),
-    ClienteID INT,
-    DataVenda DATETIME NOT NULL,
-    Total DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+    NotaFiscalID int IDENTITY(1,1) NOT NULL,
+	Numero nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	DataEmissao datetime NOT NULL,
+	Valor decimal(18,2) NOT NULL,
+	Descricao nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ClienteID int NOT NULL,
+	CONSTRAINT PK__NotaFisc__F82B6CD64E88E548 PRIMARY KEY (NotaFiscalID)
 );
 GO
 
@@ -235,7 +237,7 @@ GO
 -- Stored Procedures para Nota Fiscal
 
 -- Stored Procedure para Inserir Nota Fiscal
-CREATE PROCEDURE dbo.sp_InserirNotaFiscal
+CREATE PROCEDURE sp_InserirNotaFiscal
 @Numero NVARCHAR(50),
     @DataEmissao DATETIME,
     @Valor DECIMAL(18, 2),
