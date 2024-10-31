@@ -26,6 +26,17 @@ CREATE TABLE Fornecedores (
 );
 GO
 
+-- Criar tabela Nota Fiscal
+CREATE TABLE NotaFiscal (
+    NotaFiscalID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Numero NVARCHAR(50) NOT NULL,
+    DataEmissao DATETIME NOT NULL,
+    Valor DECIMAL(18, 2) NOT NULL,
+    Descricao NVARCHAR(255),
+    ClienteID INT NOT NULL
+);
+
+
 -- Criar tabela Produtos
 CREATE TABLE Produtos (
     ProdutoID INT PRIMARY KEY IDENTITY(1,1),
@@ -36,27 +47,7 @@ CREATE TABLE Produtos (
 );
 GO
 
-CREATE TABLE Produtos (
-    ProdutoID INT PRIMARY KEY IDENTITY,
-    Nome NVARCHAR(255) NOT NULL,
-    Preco DECIMAL(18, 2) NOT NULL,
-    Estoque INT NOT NULL,
-    DataCriacao DATETIME NOT NULL DEFAULT GETDATE(),
-    DataAtualizacao DATETIME NOT NULL DEFAULT GETDATE()
-);
 
-
--- Criar tabela Nota Fiscal
-CREATE TABLE NotaFiscal (
-    NotaFiscalID int IDENTITY(1,1) NOT NULL,
-	Numero nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	DataEmissao datetime NOT NULL,
-	Valor decimal(18,2) NOT NULL,
-	Descricao nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-	ClienteID int NOT NULL,
-	CONSTRAINT PK__NotaFisc__F82B6CD64E88E548 PRIMARY KEY (NotaFiscalID)
-);
-GO
 
 -- Criar tabela Posts
 CREATE TABLE Posts (
@@ -282,14 +273,23 @@ GO
 -- Exemplo de Stored Procedure para Atualizar Nota Fiscal
 CREATE PROCEDURE sp_AtualizarNotaFiscal
     @NotaFiscalID INT,
-    @ClienteID INT,
-    @DataVenda DATETIME,
-    @Total DECIMAL(10, 2)
+    @Numero NVARCHAR(50),
+    @DataEmissao DATETIME,
+    @Valor DECIMAL(18,2),
+    @Descricao NVARCHAR(255),
+    @ClienteID INT
 AS
 BEGIN
+    -- Atualizar a nota fiscal com os novos valores
     UPDATE NotaFiscal
-    SET ClienteID = @ClienteID, DataVenda = @DataVenda, Total = @Total
-    WHERE NotaFiscalID = @NotaFiscalID;
+    SET 
+        Numero = @Numero,
+        DataEmissao = @DataEmissao,
+        Valor = @Valor,
+        Descricao = @Descricao,
+        ClienteID = @ClienteID
+    WHERE 
+        NotaFiscalID = @NotaFiscalID;
 END;
 GO
 
