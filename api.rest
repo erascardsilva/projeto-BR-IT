@@ -126,25 +126,6 @@ Content-Type: application/json
 DELETE http://localhost:5000/api/produtos/3
 Accept: application/json
 
-###
-
-
-##########################################
-
-#  API JSON EXTERNA 
-
-### Endpoint para verificar os dados armazenados  OK
-GET http://localhost:5000/api/dadosapi
-Content-Type: application/json
-
-#
-----
-
-### Importar Posts da API Externa
-POST http://localhost:5000/api/posts/importar
-Content-Type: application/json
-
-
 
 ################################################
 
@@ -185,3 +166,21 @@ Content-Type: application/json
 
 ### Deletar uma Nota Fiscal OK
 DELETE http://localhost:5000/api/notafiscal/5
+
+
+########################################################
+
+### API externa Banco
+
+GET http://localhost:5000/api/DadosApi/db-posts
+Accept: application/json
+
+### API EXTERNA
+
+GET http://localhost:5000/api/DadosApi/external-posts
+Accept: application/json
+
+
+### Rota para salvar dados da API externa no banco de dados
+POST http://localhost:5000/api/DadosApi/save-external-posts
+Content-Type: application/json

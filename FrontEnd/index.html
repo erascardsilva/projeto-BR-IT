@@ -1,4 +1,3 @@
-
 <!-- Erasmo Cardoso Front html css javascript simplificando -->
 
 <!DOCTYPE html>
@@ -33,6 +32,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         .btn:hover {
             background-color: #0056b3;
@@ -156,11 +156,20 @@
         <div id="notasFiscais"></div>
     </div>
 
+    <!-- API Externa Section -->
+    <div class="section">
+        <h3>Dados da API Externa</h3>
+        <button id="carregarDadosExternos" class="btn">Carregar Dados Externos</button>
+        <div id="dadosExternos"></div>
+    </div>
+
     <script>
+        //Rotas
         const API_CLIENTES = "http://localhost:5000/api/clientes";
         const API_FORNECEDORES = "http://localhost:5000/api/fornecedores";
         const API_PRODUTOS = "http://localhost:5000/api/produtos";
         const API_NOTAS = "http://localhost:5000/api/notafiscal";
+        const API_EXTERNAL_POSTS = "http://localhost:5000/api/DadosApi/external-posts"; 
 
         // Função para carregar e exibir dados de uma entidade
         async function carregarDados(apiUrl, elementoHTML) {
@@ -221,23 +230,35 @@
             e.preventDefault();
             const numero = document.getElementById("numeroNota").value;
             const dataEmissao = document.getElementById("dataEmissao").value;
-            const valor = document.getElementById("valorTotal").value;
+            const valorTotal = document.getElementById("valorTotal").value;
             const descricao = document.getElementById("descricaoNota").value;
             const clienteID = document.getElementById("clienteIDNota").value;
             const dataVenda = document.getElementById("dataVenda").value;
             await fetch(API_NOTAS, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ numero, dataEmissao, valor, descricao, clienteID, dataVenda })
+                body: JSON.stringify({ numero, dataEmissao, valorTotal, descricao, clienteID, dataVenda })
             });
             alert("Nota fiscal gravada com sucesso!");
             carregarDados(API_NOTAS, "notasFiscais");
         });
 
-        carregarDados(API_CLIENTES, "clientes");
-        carregarDados(API_FORNECEDORES, "fornecedores");
-        carregarDados(API_PRODUTOS, "produtos");
-        carregarDados(API_NOTAS, "notasFiscais");
+        // Carregar dados da API externa 
+        document.getElementById("carregarDadosExternos").addEventListener("click", async () => {
+            const response = await fetch(API_EXTERNAL_POSTS);
+            const dados = await response.json();
+            document.getElementById("dadosExternos").innerHTML = dados.map(
+                item => `<div class="list-item">${Object.values(item).join(' - ')}</div>`
+            ).join("");
+        });
+
+        // Carregar
+        (async () => {
+            await carregarDados(API_CLIENTES, "clientes");
+            await carregarDados(API_FORNECEDORES, "fornecedores");
+            await carregarDados(API_PRODUTOS, "produtos");
+            await carregarDados(API_NOTAS, "notasFiscais");
+        })();
     </script>
 </body>
 </html>

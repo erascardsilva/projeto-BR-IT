@@ -45,7 +45,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<FornecedorRepository>();
 builder.Services.AddScoped<ClienteRepository>();
 builder.Services.AddScoped<ProdutoRepository>();
-builder.Services.AddScoped<PostRepository>();
+// builder.Services.AddScoped<PostRepository>();
 builder.Services.AddScoped<AcessoAPI.Repository.NotaFiscalRepository>();
 
 

@@ -1,5 +1,4 @@
-//Codando
-
+//Erasmo Cardoso
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -24,10 +23,13 @@ namespace AcessoAPI.API
         public DadosApiExt(IConfiguration configuration, HttpClient httpClient, ILogger<DadosApiExt> logger)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
+
             if (string.IsNullOrEmpty(connectionString))
             {
-                throw new InvalidOperationException("A string de conexão 'DefaultConnection' não pode ser nula ou vazia.");
+                throw new InvalidOperationException("A string é nula ou vazia.");
             }
+
+            Console.WriteLine("A string não está nula ou vazia. Tudo OK."); 
 
             _connectionString = connectionString;
             _httpClient = httpClient;
