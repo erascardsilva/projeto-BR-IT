@@ -132,6 +132,6 @@ CREATE TABLE Posts (
 
 ----------------
 
-<img width = "1000px" src="https://github.com/user-attachments/assets/0e3e9a30-26d9-4cd8-801a-b74a3f32010b">
+<img width = "1000px" src="https://github.com/user-attachments/assets/4a7bc57d-9b55-4063-b322-3f3bcba6b225">
 
 
