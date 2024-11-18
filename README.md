@@ -1,6 +1,6 @@
 # Projeto de Sistema de Gestão Integrado com Docker Compose
 
-Este projeto é uma aplicação de gestão para clientes, fornecedores, produtos, notas fiscais e posts, utilizando **Docker Compose** para orquestrar os containers. A aplicação é composta por um backend em **C# (.NET 8)**, um banco de dados **SQL Server** e um frontend simples em **HTML** servido via **Nginx**.
+Este projeto é uma aplicação de gestão para clientes, fornecedores, produtos, notas fiscais e posts, utilizando **Docker Compose** para orquestrar os containers. A aplicação é composta por um backend em **C# (.NET 8)**, um banco de dados **SQL Server** e um frontend simples em **HTML** .
 
 ## Estrutura do Projeto
 
